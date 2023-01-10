@@ -9,12 +9,13 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 
-@Getter
-@Setter
-@ToString
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
+@Setter
+@ToString
 @Entity
 public class Dish {
     @Id
@@ -29,9 +30,9 @@ public class Dish {
     private LocalDateTime dateCreated;
     @Enumerated(EnumType.STRING)
     private Category category;
-    @ManyToMany(mappedBy = "orderedDishes")
     @ToString.Exclude
-    private Set<Receipt> receipt;
+    @Transient
+    private Set<Receipt> receipts;
 
     @Override
     public boolean equals(Object o) {

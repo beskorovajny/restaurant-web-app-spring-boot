@@ -9,12 +9,13 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 
-@Getter
-@Setter
-@ToString
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
+@Setter
+@ToString
 @Entity
 public class Receipt {
     @Id
@@ -26,12 +27,11 @@ public class Receipt {
     private Contacts contacts;
     @Enumerated(EnumType.STRING)
     private Status status;
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @ToString.Exclude
     private User customer;
-    @ManyToMany(mappedBy = "receipt")
-    @ToString.Exclude
-    private Set<Dish> orderedDishes;
+    @Transient
+    private Set<Dish> dishes;
 
     @Override
     public boolean equals(Object o) {

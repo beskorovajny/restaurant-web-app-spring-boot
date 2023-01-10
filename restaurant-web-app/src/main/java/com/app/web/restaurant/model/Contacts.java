@@ -7,12 +7,12 @@ import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
-@Getter
-@Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
+@Setter
+@ToString
 @Entity
 public class Contacts {
     @Id

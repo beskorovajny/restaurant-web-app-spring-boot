@@ -8,12 +8,13 @@ import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
-@Getter
-@Setter
-@ToString
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
+@ToString
 @Entity
 public class User {
     @Id
