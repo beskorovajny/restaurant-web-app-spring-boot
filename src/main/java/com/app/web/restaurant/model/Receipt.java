@@ -23,7 +23,7 @@ public class Receipt {
     private Long id;
     private LocalDateTime dateCreated;
     private Double totalPrice;
-    @ManyToOne()
+    @ManyToOne
     private Contacts contacts;
     @Enumerated(EnumType.STRING)
     private Status status;
