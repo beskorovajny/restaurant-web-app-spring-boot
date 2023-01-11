@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css">>
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+    <title>
+       Admin panel</title>
+</head>
+
+<body>
+<nav class="navbar navbar-light navbar-expand-md py-3" aria-label="header">
+    <div class="container">
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav-col-2"><span
+                class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div id="nav-col-2" class="collapse navbar-collapse">
+            <div class="btn-group col-md-5 w-auto ms-auto" role="group" aria-label="Button group with nested dropdown">
+
+                <div class="col-md-15 text-center" style="margin: 10px">
+                    <h6>Hello
+                        ${sessionScope.user.firstName} ${sessionScope.user.lastName}
+                    </h6>
+                </div>
+                <div class="col-md-15 text-end">
+                    <a href="controller?command=logout" style="text-decoration:none;">
+                        <button type="button" class="btn btn-outline-warning">
+                            Logout</button>
+                    </a>
+                </div>
+                <div class="btn-group btn-group-sm" role="group" style="margin-left: 5px">
+                    <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        Lang
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <li><a class="dropdown-item"
+                               href="controller?command=setLang&locale=ua&pageToProcess=${param.command}&page=${param.page}">UA</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                               href="controller?command=setLang&locale&pageToProcess=${param.command}&page=${param.page}">ENG</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<hr class="bg-secondary border-2 border-top border-secondary">
+<div class="container py-4 py-xl-5">
+    <ul class="nav nav-pills nav-justified">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page">Receipts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="controller?command=dishes">Dishes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="controller?command=users">Users</a>
+        </li>
+    </ul>
+    <hr class="bg-secondary border-2 border-top border-secondary">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date created</th>
+            <th scope="col">Total price</th>
+            <th scope="col">Status</th>
+            <th scope="col">User ID</th>
+            <th scope="col">Contacts ID</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>22.06.2015</td>
+                <td>215 $</td>
+                <td>New</td>
+                <td>6</td>
+                <td>2</td>
+                <td>
+                    <button type="button" class="btn btn-outline-secondary"
+                            onclick="window.location='controller?command=receipt_details&receiptId=${receipt.id}'">
+                        Details</button>
+                    <button type="button" class="btn btn-outline-warning"
+                            onclick="window.location='controller?command=update_receipt_status&receiptId=${receipt.id}&page=${param.page}'">
+                        Edit</button>
+                    <button type="button" class="btn btn-outline-danger"
+                            onclick="window.location='controller?command=remove_receipt&receiptId=${receipt.id}'">
+                        Remove</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <nav>
+        <ul class="pagination justify-content-center">
+            <c:if test="${param.page-1 >= 1}">
+                <li class="page-item"><a class="page-link"
+                                         href="controller?command=${param.command}&page=${param.page-1}"><fmt:message
+                        key="text.previous"/></a>
+                </li>
+            </c:if>
+
+            <c:forEach var="page" items="${requestScope.pages}">
+
+                <li class="page-item"><a class="page-link"
+                                         href="controller?command=${param.command}&page=${page}">${page}</a>
+                </li>
+
+            </c:forEach>
+            <c:set var="size" scope="page" value="${requestScope.pages}"/>
+
+            <c:if test="${param.page+1 <= size.size()}">
+                <li class="page-item"><a class="page-link"
+                                         href="controller?command=${param.command}&page=${param.page+1}"><fmt:message
+                        key="text.next"/></a>
+                </li>
+            </c:if>
+        </ul>
+    </nav>
+</div>
+</body>
+</html>
