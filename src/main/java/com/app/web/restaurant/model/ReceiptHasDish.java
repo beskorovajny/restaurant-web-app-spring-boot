@@ -14,6 +14,7 @@ public class ReceiptHasDish {
     @ManyToOne
     @JoinColumn(name = "receipt_id")
     private Receipt receipt;
+
     private Double price;
     private Integer count;
 
@@ -39,5 +40,21 @@ public class ReceiptHasDish {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }

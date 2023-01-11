@@ -1,3 +1,21 @@
 
-J
-restaurant-web-app/pom.xml,6\8\68c613a722d224c1edae26487839e26d06b1f6c1
+l
+<src/main/java/com/app/web/restaurant/model/enums/Status.java,0\5\055af42e1013436af6ea801733cf2ec44ff639e0
+h
+8src/main/java/com/app/web/restaurant/model/Contacts.java,8\a\8afdb151b528c31bbe186137fc236dcd901ce366
+d
+4src/main/java/com/app/web/restaurant/model/User.java,0\7\076ac06b9279f10e80e15474336a4304365aa06a
+z
+Jsrc/test/java/com/app/web/restaurant/RestaurantWebAppApplicationTests.java,a\a\aa63a09b2855c4adc72d53c72062443a8fd6898a
+7
+HELP.md,1\a\1a273f73b7a477b0745593641bd708a6182c7ad5
+n
+>src/main/java/com/app/web/restaurant/model/ReceiptHasDish.java,4\a\4a31e9fd6f1823a0fb6eedadb837c35736cfebc6
+g
+7src/main/java/com/app/web/restaurant/model/Receipt.java,6\e\6ebf539c4b9551aba4f6c804e44f91a681a40fd4
+d
+4src/main/java/com/app/web/restaurant/model/Dish.java,2\3\2369d83971741c1709a939fc9f304c7b57ae589a
+n
+>src/main/java/com/app/web/restaurant/model/enums/Category.java,a\2\a2d02352a9cdee1ac622b1f43ea4a0aa85cc3360
+j
+:src/main/java/com/app/web/restaurant/model/enums/Role.java,1\d\1d198a5dfe02a6eff4b8a88a22422012ac07d559
