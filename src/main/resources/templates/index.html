@@ -1,7 +1,109 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css">
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+
+    <title>Home</title>
+</head>
+
 <body>
-<%--<c:redirect url="controller?command=home"/>--%>
+<nav class="navbar navbar-light navbar-expand-md py-3">
+    <div class="container"><a class="navbar-brand d-flex align-items-center" href="/templates/index.html">
+        <span>Brand</span></a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav-col-2"><span
+                class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div id="nav-col-2" class="collapse navbar-collapse">
+            <div class="btn-group col-md-5 w-auto ms-auto" role="group" aria-label="Button group with nested dropdown">
+                <div class="col-md-15 text-end">
+                    <a th:href="@{login.html}" style="text-decoration:none;">
+                        <button type="button" class="btn btn-outline-secondary">
+                            Login</button>
+                    </a>
+                    <a th:href="@{registration.html}" style="text-decoration:none;">
+                        <button type="button"
+                                class="btn btn-outline-success">Register</button>
+                    </a>
+                </div>
+
+                <div class="col-md-15 text-center" style="margin: 10px">
+                    <h6>Hello
+                        ${sessionScope.user.firstName} ${sessionScope.user.lastName}
+                    </h6>
+                </div>
+
+                <div class="col-md-15 text-end" style="margin-right: 10px;">
+                    <a th:href="@{menu}" style="text-decoration:none;">
+                        <button type="button" class="btn btn-outline-success">
+                            Menu
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-15 text-end" style="margin-right: 10px;">
+                    <a href="controller?command=user_receipts" style="text-decoration:none;">
+                        <button type="button" class="btn btn-outline-primary">
+                            Orders
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-15 text-end" style="margin-right: 10px">
+                    <a href="controller?command=checkout_form" style="text-decoration:none;">
+                        <button type="button" class="btn btn-outline-secondary">
+                            Cart ${sessionScope.cart.size()}</button>
+                    </a>
+                </div>
+                <div class="col-md-15 text-end">
+                    <a th:href="@{logout}" style="text-decoration:none;">
+                        <button type="button" class="btn btn-outline-warning">
+                            Logout</button>
+                    </a>
+                </div>
+
+
+                <div class="col-md-15 text-end" style="margin-right: 10px;">
+                    <a th:href="@{admin}" style="text-decoration:none;">
+                        <button type="button" class="btn btn-outline-success">
+                            Admin panel
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-15 text-end">
+                    <a th:href="@{logout}" style="text-decoration:none;">
+                        <button type="button" class="btn btn-outline-warning">
+                            Logout</button>
+                    </a>
+                </div>
+
+                <div class="btn-group btn-group-sm" role="group" style="margin-left: 5px">
+                    <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        Lang
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <li><a class="dropdown-item"
+                               href="controller?command=setLang&locale=ua&pageToProcess=${param.command}">UA</a></li>
+                        <li><a class="dropdown-item"
+                               href="controller?command=setLang&locale&pageToProcess=${param.command}">ENG</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<hr class="bg-secondary border-2 border-top border-secondary">
+<div class="container py-4 py-xl-5">
+    <div class="row mb-5">
+        <div class="col-md-8 col-xl-6 text-center mx-auto">
+            <h2>About us</h2>
+            <p class="w-lg-50">Text</p>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
 </body>
+
 </html>

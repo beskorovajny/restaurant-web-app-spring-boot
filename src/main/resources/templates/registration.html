@@ -14,8 +14,8 @@
 
 <body>
 <nav class="navbar navbar-light navbar-expand-md py-3">
-    <div class="container"><a class="navbar-brand d-flex align-items-center" href="controller?command=home">
-        <span><fmt:message key="text.brand"/></span></a>
+    <div class="container"><a class="navbar-brand d-flex align-items-center" href="/templates/index.html">
+        <span>Brand</span></a>
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav-col-2"><span
                 class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div id="nav-col-2" class="collapse navbar-collapse">
@@ -23,7 +23,7 @@
                 <div class="btn-group btn-group-sm" role="group" style="margin-left: 5px">
                     <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                        <fmt:message key="logo.globe"/>
+                        Lang
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                         <li><a class="dropdown-item" role="button"
@@ -45,41 +45,45 @@
                         <div class="col-md-6 col-xl-4">
                             <div class="card mb-5">
                                 <div class="card-body d-flex flex-column align-items-center">
-                                    <form class="text-center" action="controller" method="post">
-                                        <input hidden name="command" value="registration"/>
+                                    <form class="text-center" th:action="@{/users/save}" method="post" th:object="${user}">
+                                        <input type="hidden"/>  <!--th:field="*{id}"-->
                                         <div class="d-lg-flex justify-content-lg-end align-items-lg-start mb-3"><input
                                                 class="form-control" type="email" name="email" placeholder="Email"
                                                 minlength="3" maxlength="44"
                                                 pattern="^(?=.{4,45}$)([\w-\.]{1,})+@([\w-]+\.)+([\w-]{2,4})$"
                                                 required="" style="margin-top: 10px"/></div>
                                         <div style="margin-bottom: 16px;"><input class="form-control" type="text"
-                                                                                 placeholder="<fmt:message key="text.first.name"/>"
-                                                                                 name="firstName"
-                                                                                 pattern="(?=.{1,45}$)[\p{L}\s*]+$"
-                                                                                 minlength="1" required=""
-                                                                                 maxlength="44"/></div>
+                                                                                 placeholder="First name"
+                                            name="firstName"
+                                            pattern="(?=.{1,45}$)[\p{L}\s*]+$"
+                                            minlength="1" required=""
+                                            maxlength="44"/>
+                                        </div>
                                         <div style="margin-bottom: 16px;"><input class="form-control" type="text"
-                                                                                 placeholder="<fmt:message key="text.last.name"/>"
-                                                                                 name="lastName" minlength="1"
-                                                                                 pattern="(?=.{1,45}$)[\p{L}\s*]+$"
-                                                                                 required="" maxlength="44"/></div>
+                                                                                 placeholder="Last name"
+                                            name="lastName" minlength="1"
+                                            pattern="(?=.{1,45}$)[\p{L}\s*]+$"
+                                            required="" maxlength="44"/>
+                                        </div>
                                         <div style="margin-bottom: 16px;">
                                         </div>
                                         <div class="mb-3"><input class="form-control" type="password" name="password"
-                                                                 placeholder="<fmt:message key="text.password"/>"
-                                                                 required="" minlength="8"
-                                                                 id="passInput" style="margin-bottom: 10px"
-                                                                 pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,65}$"/>
-                                            <input class="form-check-input" type="checkbox" onclick="myFunction()">
-                                            <fmt:message key="text.show.password"/>
+                                                                 placeholder="Password"
+                                            required="" minlength="8"
+                                            id="passInput" style="margin-bottom: 10px"
+                                            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,65}$"/>
+                                            <input class="form-check-input" type="checkbox" th:onclick="myFunction()">
+                                           Show password
                                         </div>
                                         <div class="mb-3">
                                             <button class="btn btn-success d-block w-100" type="submit"
-                                                    value=""><fmt:message key="text.sign.up"/>
+                                                    value="Save">
+                                                Sign up
                                             </button>
                                         </div>
-                                        <a class="text-muted" href="controller?command=login_form"><fmt:message
-                                                key="text.account.exists"/> </a>
+                                        <a class="text-muted" th:href="@{login}">
+                                           Already have an account?
+                                        </a>
                                     </form>
                                 </div>
                             </div>
@@ -90,9 +94,6 @@
         </div>
     </div>
 </div>
-<%@ include file="include/footer.jspf" %>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/custom.js"></script>
 </body>
 
 </html>

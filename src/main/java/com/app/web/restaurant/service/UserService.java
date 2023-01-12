@@ -8,7 +8,7 @@ public interface UserService {
     boolean isUserExistsByEmail(String eMail);
     void saveUser(User user);
     User updateUser(User user);
-    User findUserById(Long ID);
+    User findUserById(Long id);
     List<User> findAllUsers();
     void deleteUserById(Long id);
 }
