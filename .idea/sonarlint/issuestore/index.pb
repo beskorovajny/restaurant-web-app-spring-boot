@@ -37,3 +37,9 @@ z
 Jsrc/main/java/com/app/web/restaurant/service/impl/ContactsServiceImpl.java,d\9\d963017b626fc84fb1b7b54371788c87bca728b9
 n
 >src/main/java/com/app/web/restaurant/model/ReceiptHasDish.java,4\a\4a31e9fd6f1823a0fb6eedadb837c35736cfebc6
+d
+4src/main/java/com/app/web/restaurant/model/User.java,0\7\076ac06b9279f10e80e15474336a4304365aa06a
+m
+=src/main/java/com/app/web/restaurant/service/UserService.java,2\6\26422f4fb12c1044740993542f0f3ff2864fddd2
+v
+Fsrc/main/java/com/app/web/restaurant/service/impl/UserServiceImpl.java,b\9\b9ef4d0df8da2d4ae8a0c935ba932c388c086853

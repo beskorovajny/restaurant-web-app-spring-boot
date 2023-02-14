@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
     <link rel="stylesheet" type="text/css" media="all"
-          th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css">>
+          th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css">
     <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
     <title>
-       Admin panel</title>
+        Admin panel</title>
 </head>
 
 <body>
@@ -20,14 +20,13 @@
             <div class="btn-group col-md-5 w-auto ms-auto" role="group" aria-label="Button group with nested dropdown">
 
                 <div class="col-md-15 text-center" style="margin: 10px">
-                    <h6>Hello
-                        ${sessionScope.user.firstName} ${sessionScope.user.lastName}
-                    </h6>
+                    <h6 th:text="Hello ${session.user.firstName} ${session.user.lastName}"></h6>
                 </div>
                 <div class="col-md-15 text-end">
                     <a href="controller?command=logout" style="text-decoration:none;">
                         <button type="button" class="btn btn-outline-warning">
-                            Logout</button>
+                            Logout
+                        </button>
                     </a>
                 </div>
                 <div class="btn-group btn-group-sm" role="group" style="margin-left: 5px">
@@ -76,33 +75,38 @@
         </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>22.06.2015</td>
-                <td>215 $</td>
-                <td>New</td>
-                <td>6</td>
-                <td>2</td>
-                <td>
-                    <button type="button" class="btn btn-outline-secondary"
-                            onclick="window.location='controller?command=receipt_details&receiptId=${receipt.id}'">
-                        Details</button>
-                    <button type="button" class="btn btn-outline-warning"
-                            onclick="window.location='controller?command=update_receipt_status&receiptId=${receipt.id}&page=${param.page}'">
-                        Edit</button>
-                    <button type="button" class="btn btn-outline-danger"
-                            onclick="window.location='controller?command=remove_receipt&receiptId=${receipt.id}'">
-                        Remove</button>
-                </td>
-            </tr>
+        <tr>
+            <td>1</td>
+            <td>22.06.2015</td>
+            <td>215 $</td>
+            <td>New</td>
+            <td>6</td>
+            <td>2</td>
+            <td>
+                <button type="button" class="btn btn-outline-secondary"
+                        onclick="window.location='controller?command=receipt_details&receiptId=${receipt.id}'">
+                    Details
+                </button>
+                <button type="button" class="btn btn-outline-warning"
+                        onclick="window.location='controller?command=update_receipt_status&receiptId=${receipt.id}&page=${param.page}'">
+                    Edit
+                </button>
+                <button type="button" class="btn btn-outline-danger"
+                        onclick="window.location='controller?command=remove_receipt&receiptId=${receipt.id}'">
+                    Remove
+                </button>
+            </td>
+        </tr>
         </tbody>
     </table>
     <nav>
         <ul class="pagination justify-content-center">
             <c:if test="${param.page-1 >= 1}">
                 <li class="page-item"><a class="page-link"
-                                         href="controller?command=${param.command}&page=${param.page-1}"><fmt:message
-                        key="text.previous"/></a>
+                                         href="controller?command=${param.command}&page=${param.page-1}">
+                    <fmt:message
+                            key="text.previous"/>
+                </a>
                 </li>
             </c:if>
 
@@ -117,8 +121,10 @@
 
             <c:if test="${param.page+1 <= size.size()}">
                 <li class="page-item"><a class="page-link"
-                                         href="controller?command=${param.command}&page=${param.page+1}"><fmt:message
-                        key="text.next"/></a>
+                                         href="controller?command=${param.command}&page=${param.page+1}">
+                    <fmt:message
+                            key="text.next"/>
+                </a>
                 </li>
             </c:if>
         </ul>

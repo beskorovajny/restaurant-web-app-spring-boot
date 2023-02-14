@@ -16,16 +16,20 @@
     <div class="col">
         <div class="row">
             <div class="col" style="text-align: center;">
-                <img src="../static/images/error.png" th:src="@{/images/error.png}" class="img-fluid"  alt="error image"/>
+                <img src="../static/images/error.png" th:src="@{/images/error.png}" class="img-fluid"
+                     alt="error image"/>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <h1 style="text-align: center;"><fmt:message key="text.error.text"/><br/><fmt:message
-                        key="text.error.me"/>
+                <h1 style="text-align: center;">
+                    <fmt:message key="text.error.text"/>
+                    <br/>
+                    <fmt:message
+                            key="text.error.me"/>
                 </h1>
                 <h3 style="text-align: center;"><a class="text-muted"
-                                                   th:href="@{/}"
+                                                   th:href="@{/home}"
                                                    style="color: #008000;">Home</a></h3>
                 <p class="lead shadow-none"
                    style="text-align: center;font-size: 15px;margin: 54px;">
