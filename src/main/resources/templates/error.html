@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:fmt="http://www.w3.org/1999/XSL/Transform">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" media="all"
           th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css">
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-    <title>Error page</title>
+    <title th:text="#{text.error}"></title>
 </head>
 
 <body>
@@ -22,15 +22,12 @@
         </div>
         <div class="row">
             <div class="col">
-                <h1 style="text-align: center;">
-                    <fmt:message key="text.error.text"/>
-                    <br/>
-                    <fmt:message
-                            key="text.error.me"/>
-                </h1>
+                <h5 style="text-align: center;" th:utext="#{text.error.text}"></h5>
+                <h5 style="text-align: center;" th:utext="#{text.error.msg}"></h5>
                 <h3 style="text-align: center;"><a class="text-muted"
                                                    th:href="@{/home}"
-                                                   style="color: #008000;">Home</a></h3>
+                                                   th:text="#{text.home}"
+                                                   style="color: #008000;"></a></h3>
                 <p class="lead shadow-none"
                    style="text-align: center;font-size: 15px;margin: 54px;">
                     Something went terribly wrong...<br/>
@@ -43,5 +40,4 @@
     </div>
 </div>
 </body>
-
 </html>

@@ -7,39 +7,35 @@
     <link rel="stylesheet" type="text/css" media="all"
           th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css">
     <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
-    <title>
-        Admin panel</title>
+    <title th:text="#{text.admin.panel}"></title>
 </head>
 
 <body>
 <nav class="navbar navbar-light navbar-expand-md py-3" aria-label="header">
-    <div class="container">
+    <div class="container"><a class="navbar-brand d-flex align-items-center" th:href="@{/home}">
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav-col-2"><span
                 class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div id="nav-col-2" class="collapse navbar-collapse">
             <div class="btn-group col-md-5 w-auto ms-auto" role="group" aria-label="Button group with nested dropdown">
-
                 <div class="col-md-15 text-center" style="margin: 10px">
-                    <h6 th:text="Hello ${session.user.firstName} ${session.user.lastName}"></h6>
+                    <h6 th:text="#{text.greetings} "> ${session.user.firstName} ${session.user.lastName}</h6>
                 </div>
                 <div class="col-md-15 text-end">
                     <a href="controller?command=logout" style="text-decoration:none;">
-                        <button type="button" class="btn btn-outline-warning">
-                            Logout
-                        </button>
+                        <button type="button" class="btn btn-outline-warning" th:text="#{text.logout}"></button>
                     </a>
                 </div>
                 <div class="btn-group btn-group-sm" role="group" style="margin-left: 5px">
-                    <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        Lang
+                    <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false" th:utext="#{logo.globe}">
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                         <li><a class="dropdown-item"
-                               href="controller?command=setLang&locale=ua&pageToProcess=${param.command}&page=${param.page}">UA</a>
+                               th:href="@{''(lang=ua)}">UA</a>
                         </li>
                         <li><a class="dropdown-item"
-                               href="controller?command=setLang&locale&pageToProcess=${param.command}&page=${param.page}">ENG</a>
+                               th:href="@{''(lang=en)}">ENG</a>
                         </li>
                     </ul>
                 </div>
@@ -52,13 +48,13 @@
 <div class="container py-4 py-xl-5">
     <ul class="nav nav-pills nav-justified">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page">Receipts</a>
+            <a class="nav-link active" aria-current="page" th:text="#{text.receipts}"></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="controller?command=dishes">Dishes</a>
+            <a class="nav-link" href="controller?command=dishes" th:text="#{text.dishes}"></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="controller?command=users">Users</a>
+            <a class="nav-link" href="controller?command=users" th:text="#{text.users}"></a>
         </li>
     </ul>
     <hr class="bg-secondary border-2 border-top border-secondary">
@@ -66,34 +62,39 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Date created</th>
-            <th scope="col">Total price</th>
-            <th scope="col">Status</th>
-            <th scope="col">User ID</th>
-            <th scope="col">Contacts ID</th>
+            <th scope="col" th:text="#{text.date.created}"></th>
+            <th scope="col" th:text="#{text.total.price}"></th>
+            <th scope="col" th:text="#{text.status}"></th>
+            <th scope="col" th:text="#{text.user}">ID</th>
+            <th scope="col" th:text="#{text.contacts}">ID</th>
             <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>1</td>
-            <td>22.06.2015</td>
-            <td>215 $</td>
-            <td>New</td>
-            <td>6</td>
-            <td>2</td>
+        <tr th:each="receipt: ${receipts}">
+            <td th:text="${receipt.id}"/>
+            <td th:text="${#dates.format(receipt.dateCreated, 'yyyy-MM-dd HH:mm')}"/>
+            <td th:text="${receipt.totalPrice}"/>
+            <td th:switch="${receipt.status.name()}">
+                <span th:case="'NEW'" th:text="#{text.new}"></span>
+                <span th:case="'COOKING'" th:text="#{text.cooking}"></span>
+                <span th:case="'DELIVERY'" th:text="#{text.delivery}"></span>
+                <span th:case="'COMPLETED'" th:text="#{text.completed}"></span>
+            </td>
+            <td th:text="${receipt.contactsId}"/>
+            <td th:text="${receipt.customerId}"/>
             <td>
                 <button type="button" class="btn btn-outline-secondary"
-                        onclick="window.location='controller?command=receipt_details&receiptId=${receipt.id}'">
-                    Details
+                        onclick="window.location='controller?command=receipt_details&receiptId=${receipt.id}'"
+                        th:text="#{text.details}">
                 </button>
                 <button type="button" class="btn btn-outline-warning"
-                        onclick="window.location='controller?command=update_receipt_status&receiptId=${receipt.id}&page=${param.page}'">
-                    Edit
+                        onclick="window.location='controller?command=update_receipt_status&receiptId=${receipt.id}&page=${param.page}'"
+                        th:text="#{text.edit}">
                 </button>
                 <button type="button" class="btn btn-outline-danger"
-                        onclick="window.location='controller?command=remove_receipt&receiptId=${receipt.id}'">
-                    Remove
+                        onclick="window.location='controller?command=remove_receipt&receiptId=${receipt.id}'"
+                        th:text="#{text.remove}">
                 </button>
             </td>
         </tr>
@@ -103,10 +104,8 @@
         <ul class="pagination justify-content-center">
             <c:if test="${param.page-1 >= 1}">
                 <li class="page-item"><a class="page-link"
-                                         href="controller?command=${param.command}&page=${param.page-1}">
-                    <fmt:message
-                            key="text.previous"/>
-                </a>
+                                         href="controller?command=${param.command}&page=${param.page-1}"
+                                         th:text="#{text.previous}"></a>
                 </li>
             </c:if>
 
@@ -121,10 +120,8 @@
 
             <c:if test="${param.page+1 <= size.size()}">
                 <li class="page-item"><a class="page-link"
-                                         href="controller?command=${param.command}&page=${param.page+1}">
-                    <fmt:message
-                            key="text.next"/>
-                </a>
+                                         href="controller?command=${param.command}&page=${param.page+1}"
+                                         th:text="#{text.next}"></a>
                 </li>
             </c:if>
         </ul>

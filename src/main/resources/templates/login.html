@@ -20,15 +20,17 @@
         <div id="nav-col-2" class="collapse navbar-collapse">
             <div class="btn-group col-md-5 w-auto ms-auto" role="group" aria-label="Button group with nested dropdown">
                 <div class="btn-group btn-group-sm" role="group" style="margin-left: 5px">
-                    <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        <p th:text="#{logo.globe}"></p>
+                    <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false" th:utext="#{logo.globe}">
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                         <li><a class="dropdown-item"
-                               href="controller?command=setLang&locale=ua&pageToProcess=${param.command}">UA</a></li>
+                               th:href="@{''(lang=ua)}">UA</a>
+                        </li>
                         <li><a class="dropdown-item"
-                               href="controller?command=setLang&locale&pageToProcess=${param.command}">ENG</a></li>
+                               th:href="@{''(lang=en)}">ENG</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -52,16 +54,20 @@
                                                                  required="" style="margin-top: 10px">
                                         </div>
                                         <div class="mb-3"><input class="form-control" type="password" name="password"
-                                                                 placeholder="Password (min 8)" required="" minlength="8"
-                                                                 maxlength="64" id="passInput" style="margin-bottom: 10px"
+                                                                 placeholder="Password (min 8)" required=""
+                                                                 minlength="8"
+                                                                 maxlength="64" id="passInput"
+                                                                 style="margin-bottom: 10px"
                                                                  pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,65}$">
-                                            <input class="form-check-input" type="checkbox" onclick="myFunction()">
-                                            Show password
+                                            <input class="form-check-input" type="checkbox" onclick="myFunction()"
+                                                   th:text="#{text.show.password}">
                                         </div>
                                         <div class="mb-3">
-                                            <button class="btn btn-success d-block w-100" type="submit">Login</button>
+                                            <button class="btn btn-success d-block w-100" type="submit"
+                                                    th:text="#{text.login}"></button>
                                         </div>
-                                        <a href="controller?command=registration_form" class="text-muted">Sign up</a>
+                                        <a href="controller?command=registration_form" class="text-muted"
+                                           th:text="#{text.sign.up}"></a>
                                     </form>
                                 </div>
                             </div>
@@ -72,7 +78,5 @@
         </div>
     </div>
 </div>
-
 </body>
-
 </html>

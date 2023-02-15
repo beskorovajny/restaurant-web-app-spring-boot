@@ -13,8 +13,8 @@
 
 <body>
 <nav class="navbar navbar-light navbar-expand-md py-3">
-    <div class="container"><a class="navbar-brand d-flex align-items-center" th:href="@{index}">
-        <span>Brand</span></a>
+    <div class="container"><a class="navbar-brand d-flex align-items-center" th:href="@{/home}">
+        <span th:text="#{text.brand}"></span></a>
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav-col-2"><span
                 class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div id="nav-col-2" class="collapse navbar-collapse">
@@ -38,39 +38,35 @@
                             <div th:case="'user'">
                                 <div class="col-md-15 text-end" style="margin-right: 10px;">
                                     <a th:href="@{menu}" style="text-decoration:none;">
-                                        <button type="button" class="btn btn-outline-success">
-                                            Menu
-                                        </button>
+                                        <button type="button" class="btn btn-outline-success"
+                                                th:text="#{text.menu}"></button>
                                     </a>
                                 </div>
                                 <div class="col-md-15 text-end" style="margin-right: 10px;">
                                     <a href="controller?command=user_receipts" style="text-decoration:none;">
-                                        <button type="button" class="btn btn-outline-primary">
-                                            Orders
-                                        </button>
+                                        <button type="button" class="btn btn-outline-primary"
+                                                th:text="#{text.my.orders}"></button>
                                     </a>
                                 </div>
                                 <div class="col-md-15 text-end" style="margin-right: 10px">
                                     <a href="controller?command=checkout_form" style="text-decoration:none;">
-                                        <button type="button" class="btn btn-outline-secondary">
-                                            Cart ${sessionScope.cart.size()}
+                                        <button type="button" class="btn btn-outline-secondary"
+                                                th:text="#{logo.cart} ${session.cart.size()}">
                                         </button>
                                     </a>
                                 </div>
                                 <div class="col-md-15 text-end">
                                     <a th:href="@{/logout}" style="text-decoration:none;">
-                                        <button type="button" class="btn btn-outline-warning">
-                                            Logout
-                                        </button>
+                                        <button type="button" class="btn btn-outline-warning"
+                                                th:text="#{text.logout}"></button>
                                     </a>
                                 </div>
                             </div>
                             <div th:case="'admin'">
                                 <div class="col-md-15 text-end" style="margin-right: 10px;">
                                     <a th:href="@{admin}" style="text-decoration:none;">
-                                        <button type="button" class="btn btn-outline-success">
-                                            Admin panel
-                                        </button>
+                                        <button type="button" class="btn btn-outline-success"
+                                                th:text="#{text.admin.panel}"></button>
                                     </a>
                                 </div>
                                 <div class="col-md-15 text-end">
@@ -114,5 +110,4 @@
 </div>
 <div th:replace="fragments/footer :: footer"></div>
 </body>
-
 </html>
