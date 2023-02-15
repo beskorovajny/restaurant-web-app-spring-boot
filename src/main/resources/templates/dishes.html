@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" type="text/css" media="all"
           th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css">
-    <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
     <title th:text="#{text.admin.panel}"></title>
 </head>
 
@@ -19,9 +19,7 @@
         <div id="nav-col-2" class="collapse navbar-collapse">
             <div class="btn-group col-md-5 w-auto ms-auto" role="group" aria-label="Button group with nested dropdown">
                 <div class="col-md-15 text-center" style="margin: 10px">
-                    <h6 th:text="#{text.greetings}">
-                        ${sessionScope.user.firstName} ${sessionScope.user.lastName}
-                    </h6>
+                    <h6 th:text="#{text.greetings} ">${session.user.firstName} ${session.user.lastName}</h6>
                 </div>
                 <div class="col-md-15 text-end">
                     <a href="controller?command=logout" style="text-decoration:none;">
@@ -80,31 +78,31 @@
         </tr>
         </thead>
         <tbody>
-            <tr th:each="dish: ${dishes}">
-                <td th:text="${dish.id}"/>
-                <td th:text="${dish.title}"/>
-                <td th:text="${dish.description}"/>
-                <td th:text="${dish.price}"/>
-                <td th:text="${dish.weight}"/>
-                <td th:text="${dish.cooking}"/>
-                <td th:text="${#dates.format(dish.dateCreated, 'yyyy-MM-dd HH:mm')}"/>
-                <td th:switch="${dish.category.name()}">
-                    <span th:case="'SALAD'" th:text="#{text.salad}"></span>
-                    <span th:case="'PIZZA'" th:text="#{text.pizza}"></span>
-                    <span th:case="'APPETIZER'" th:text="#{text.appetizer}"></span>
-                    <span th:case="'DRINK'" th:text="#{text.drink}"></span>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-outline-warning"
-                            onclick="window.location='controller?command=edit_dish_form&dishId=${dish.id}'"
-                            th:text="#{text.edit}"></button>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-outline-danger"
-                            onclick="window.location='controller?command=remove_dish&dishId=${dish.id}'"
-                            th:text="#{text.remove}"></button>
-                </td>
-            </tr>
+        <tr th:each="dish: ${dishes}">
+            <td th:text="${dish.id}"/>
+            <td th:text="${dish.title}"/>
+            <td th:text="${dish.description}"/>
+            <td th:text="${dish.price}"/>
+            <td th:text="${dish.weight}"/>
+            <td th:text="${dish.cooking}"/>
+            <td th:text="${#temporals.format(dish.dateCreated, 'yyyy-MM-dd HH:mm')}"/>
+            <td th:switch="${dish.category.name()}">
+                <span th:case="'SALAD'" th:text="#{text.salad}"></span>
+                <span th:case="'PIZZA'" th:text="#{text.pizza}"></span>
+                <span th:case="'APPETIZER'" th:text="#{text.appetizer}"></span>
+                <span th:case="'DRINK'" th:text="#{text.drink}"></span>
+            </td>
+            <td>
+                <button type="button" class="btn btn-outline-warning"
+                        onclick="window.location='controller?command=edit_dish_form&dishId=${dish.id}'"
+                        th:text="#{text.edit}"></button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-outline-danger"
+                        onclick="window.location='controller?command=remove_dish&dishId=${dish.id}'"
+                        th:text="#{text.remove}"></button>
+            </td>
+        </tr>
         </tbody>
     </table>
     <nav>

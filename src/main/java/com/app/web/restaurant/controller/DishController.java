@@ -26,4 +26,10 @@ public class DishController {
         log.info("Dishes from model: [" + model.getAttribute("dishes") + "]");
         return "menu";
     }
+
+    @GetMapping("/admin/dishes")
+    public String findDishesForAdmin(Model model) {
+        findAllDishes(model);
+        return "dishes";
+    }
 }
