@@ -15,12 +15,14 @@ public class DishServiceImpl implements DishService {
     private final DishRepository dishRepository;
     @Override
     public boolean isDishExists(Dish dish) {
-        return false;
+        return dishRepository.existsById(dish.getId());
     }
 
     @Override
     public void saveDish(Dish dish) {
-
+        if (!dishRepository.existsById(dish.getId())) {
+            dishRepository.save(dish);
+        }
     }
 
     @Override
@@ -35,11 +37,13 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public List<Dish> findAllDishes() {
-        return null;
+        return dishRepository.findAll();
     }
 
     @Override
-    public void deleteDishById(Long id) {
-
+    public void deleteDish(Dish dish) {
+        if (dishRepository.existsById(dish.getId())) {
+            dishRepository.delete(dish);
+        }
     }
 }

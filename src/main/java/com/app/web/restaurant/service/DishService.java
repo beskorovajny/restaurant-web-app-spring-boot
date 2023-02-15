@@ -10,5 +10,5 @@ public interface DishService {
     Dish updateDish(Dish dish);
     Dish findDishById(Long id);
     List<Dish> findAllDishes();
-    void deleteDishById(Long id);
+    void deleteDish(Dish dish);
 }

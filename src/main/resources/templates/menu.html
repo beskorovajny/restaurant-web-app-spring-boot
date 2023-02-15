@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-md-15 text-end" style="margin-right: 10px">
                     <a href="controller?command=checkout_form" style="text-decoration:none;">
-                        <button type="button" class="btn btn-outline-secondary" th:text="#{logo.cart}">
+                        <button type="button" class="btn btn-outline-secondary" th:utext="#{logo.cart}">
                             ${session.cart.size()}
                         </button>
                     </a>
@@ -135,7 +135,6 @@
                 </form>
             </td>
         </tr>
-        </c:forEach>
         </tbody>
     </table>
 

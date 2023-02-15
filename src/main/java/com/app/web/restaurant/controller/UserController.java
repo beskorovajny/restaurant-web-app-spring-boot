@@ -18,10 +18,7 @@ import java.util.List;
 @Controller
 public class UserController {
     private final UserService userService;
-    @GetMapping("/users/new")
-    public String addUser() {
-        return "registration";
-    }
+
     @PostMapping("/users/save")
     public String saveUser(User user) {
         user.setRole(Role.USER);

@@ -1,6 +1,7 @@
 package com.app.web.restaurant.service.impl;
 
 import com.app.web.restaurant.model.Receipt;
+import com.app.web.restaurant.repository.ReceiptRepository;
 import com.app.web.restaurant.service.ReceiptService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class ReceiptServiceImpl implements ReceiptService {
+    private final ReceiptRepository receiptRepository;
+
     @Override
     public boolean isReceiptExists(Receipt receipt) {
         return false;
@@ -18,7 +21,7 @@ public class ReceiptServiceImpl implements ReceiptService {
 
     @Override
     public void saveReceipt(Receipt receipt) {
-
+        receiptRepository.save(receipt);
     }
 
     @Override
@@ -28,16 +31,16 @@ public class ReceiptServiceImpl implements ReceiptService {
 
     @Override
     public Receipt findReceiptById(Long id) {
-        return null;
+        return receiptRepository.findById(id).orElse(Receipt.builder().build());
     }
 
     @Override
     public List<Receipt> findAllReceipts() {
-        return null;
+        return receiptRepository.findAll();
     }
 
     @Override
-    public void deleteReceiptById(Receipt receipt) {
-
+    public void deleteReceipt(Receipt receipt) {
+        receiptRepository.delete(receipt);
     }
 }

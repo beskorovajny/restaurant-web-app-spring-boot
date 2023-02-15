@@ -24,7 +24,6 @@ public class Dish {
     private String title;
     private String description;
     private Double price;
-    private Double totalPrice;
     private Integer weight;
     private Integer cooking;
     private LocalDateTime dateCreated;

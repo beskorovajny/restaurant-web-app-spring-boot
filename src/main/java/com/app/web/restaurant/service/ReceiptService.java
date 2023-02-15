@@ -10,5 +10,5 @@ public interface ReceiptService {
     Receipt updateReceipt(Receipt receipt);
     Receipt findReceiptById(Long id);
     List<Receipt> findAllReceipts();
-    void deleteReceiptById(Receipt receipt);
+    void deleteReceipt(Receipt receipt);
 }

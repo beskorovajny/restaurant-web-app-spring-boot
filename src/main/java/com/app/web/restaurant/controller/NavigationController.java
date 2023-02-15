@@ -16,4 +16,12 @@ public class NavigationController {
     public String loginPage() {
         return "login";
     }
+
+    @GetMapping("/users/new")
+    public String newUser() {
+        return "registration";
+    }
+
+    @GetMapping("/admin/new-dish")
+    public String newDish() {return "create-dish";}
 }
