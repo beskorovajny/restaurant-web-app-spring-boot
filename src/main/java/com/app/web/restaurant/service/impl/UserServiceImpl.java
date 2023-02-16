@@ -16,7 +16,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     @Override
-    public boolean isUserExistsByEmail(String eMail) {
+    public boolean isExistsByEmail(String eMail) {
         Optional<User> user = userRepository.findByEmail(eMail);
         return user.isPresent();
     }
@@ -28,11 +28,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User user) {
-        return userRepository.save(user);
+        Optional<User> old = userRepository.findByEmail(user.getEmail());
+        if (old.isPresent()) {
+            return userRepository.save(user);
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
     @Override
-    public User findUserById(Long id) {
+    public User findById(Long id) {
         return userRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
@@ -42,7 +47,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUserById(Long id) {
+    public void deleteById(Long id) {
         userRepository.deleteById(id);
     }
 }

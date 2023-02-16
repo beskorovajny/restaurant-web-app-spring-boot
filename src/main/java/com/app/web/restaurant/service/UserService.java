@@ -5,10 +5,10 @@ import com.app.web.restaurant.model.User;
 import java.util.List;
 
 public interface UserService {
-    boolean isUserExistsByEmail(String eMail);
+    boolean isExistsByEmail(String eMail);
     void saveUser(User user);
     User updateUser(User user);
-    User findUserById(Long id);
+    User findById(Long id);
     List<User> findAllUsers();
-    void deleteUserById(Long id);
+    void deleteById(Long id);
 }

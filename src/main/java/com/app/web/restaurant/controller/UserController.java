@@ -2,6 +2,7 @@ package com.app.web.restaurant.controller;
 
 import com.app.web.restaurant.model.User;
 import com.app.web.restaurant.model.enums.Role;
+import com.app.web.restaurant.repository.UserRepository;
 import com.app.web.restaurant.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 public class UserController {
+    private final UserRepository userRepository;
     private final UserService userService;
 
     @PostMapping("/users/save")
@@ -26,9 +28,21 @@ public class UserController {
         return "redirect:/admin/users";
     }
 
+    @GetMapping("/admin/users/update/{id}")
+    public String updateUserRole(@PathVariable("id") Long id) {
+        User user = userService.findById(id);
+        if (user.getRole().equals(Role.USER)) {
+            user.setRole(Role.ADMIN);
+        } else {
+            user.setRole(Role.USER);
+        }
+        userService.saveUser(user);
+        return ("redirect:/admin/users");
+    }
+
     @GetMapping("/admin/users/{id}")
     public String findUserById(@PathVariable("id") Long id, Model model) {
-        List<User> users = List.of(userService.findUserById(id));
+        List<User> users = List.of(userService.findById(id));
         log.info("User by ID: [" + users + "]");
         model.addAttribute("users", users);
         return "users";
@@ -45,7 +59,7 @@ public class UserController {
 
     @GetMapping("/admin/users/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
-        userService.deleteUserById(id);
+        userService.deleteById(id);
         return "redirect:/admin/users";
     }
 

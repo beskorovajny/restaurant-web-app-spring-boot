@@ -29,8 +29,11 @@
                                                    th:text="#{text.home}"
                                                    style="color: #008000;"></a></h3>
                 <p class="lead shadow-none"
-                   style="text-align: center;font-size: 15px;margin: 54px;">
-                    Something went terribly wrong...<br/>
+                   style="text-align: center;font-size: 15px;margin: 54px;" th:text="'Something went terribly wrong..'">
+                    .<br/>
+                <p class="lead shadow-none"
+                   style="text-align: center;font-size: 15px;margin: 54px;" th:text="${#}">
+                    .<br/>
                     Request from ${pageContext.errorData.requestURI} is failed <br/>
                     Status code: ${pageContext.errorData.statusCode} <br/>
                     Exception Message: ${pageContext.exception.message} <br/>

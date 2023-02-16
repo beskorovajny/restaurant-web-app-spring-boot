@@ -17,6 +17,4 @@ public interface DishRepository extends JpaRepository<Dish, Long>, PagingAndSort
     @Override
     Optional<Dish> findById(Long id);
 
-    @Override
-    void delete(Dish entity);
 }

@@ -15,8 +15,8 @@ public class ReceiptServiceImpl implements ReceiptService {
     private final ReceiptRepository receiptRepository;
 
     @Override
-    public boolean isReceiptExists(Receipt receipt) {
-        return false;
+    public boolean isExists(Receipt receipt) {
+        return receiptRepository.existsById(receipt.getId());
     }
 
     @Override
@@ -26,7 +26,7 @@ public class ReceiptServiceImpl implements ReceiptService {
 
     @Override
     public Receipt updateReceipt(Receipt receipt) {
-        return null;
+        return receiptRepository.save(receipt);
     }
 
     @Override

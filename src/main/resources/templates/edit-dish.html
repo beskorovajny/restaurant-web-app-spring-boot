@@ -45,45 +45,64 @@
                         <div class="col-md-6 col-xl-4">
                             <div class="card mb-5">
                                 <div class="card-body d-flex flex-column align-items-center">
-                                    <form class="text-center" action="controller" method="post">
-                                        <input hidden name="command" value="edit_dish"/>
-                                        <input type="hidden" name="dishId" value="${requestScope.dish.id}">
-                                        <div style="margin-bottom: 16px;"><input class="form-control" type="text"
-                                                                                 placeholder="${requestScope.dish.title}"
-                                                                                 name="title"
-                                                                                 pattern="(?=.{1,45}$)[\p{L}\s\d*]+$"
-                                                                                 minlength="2"
-                                                                                 maxlength="45"/></div>
-                                        <div style="margin-bottom: 16px;"><input class="form-control" type="text"
-                                                                                 placeholder="${requestScope.dish.description}"
-                                                                                 name="description" minlength="2"
-                                                                                 pattern="(?=.{1,255}$)[\p{L}\s\d*]+$"
-                                                                                 maxlength="255"/></div>
-                                        <div style="margin-bottom: 16px;"><input class="form-control" type="number"
-                                                                                 name="price"
-                                                                                 placeholder="price=${requestScope.dish.price}"
-                                                                                 minlength="1"
-                                                                                 step=".01"
-                                                                                 pattern="^\d+(.\d{1,2})?$"/>
+                                    <form class="text-center" th:action="@{/admin/dishes/update}" method="post"
+                                          th:object="${dish}">
+                                        <input type="hidden" th:field="*{id}" name="id"/>
+                                        <input type="hidden" th:field="*{dateCreated}">
+                                        <div style="margin-bottom: 16px;">
+                                            <label for="title" th:text="#{text.title}"/>
+                                            <input class="form-control" type="text"
+                                                   id="title" name="title"
+                                                   th:value="${dish.title}"
+                                                   th:field="*{title}"
+                                                   pattern="(?=.{1,45}$)[\p{L}\s\d*]+$"
+                                                   minlength="2"
+                                                   maxlength="45"/>
                                         </div>
-                                        <div class="mb-3"><input class="form-control" type="number"
-                                                                 name="weight"
-                                                                 placeholder="weight=${requestScope.dish.weight}"
-                                                                 step=".01"
-                                                                 pattern="^\d+$"/>
+                                        <div style="margin-bottom: 16px;">
+                                            <label for="description" th:text="#{text.description}"/>
+                                            <input class="form-control" type="text"
+                                                   th:value="${dish.description}"
+                                                   th:field="*{description}"
+                                                   name="description" id="description" minlength="2"
+                                                   pattern="(?=.{1,255}$)[\p{L}\s\d*]+$"
+                                                   maxlength="255"/>
                                         </div>
-                                        <div style="margin-bottom: 16px;"><input class="form-control" type="number"
-                                                                                 name="cooking"
-                                                                                 placeholder="cooking=${requestScope.dish.cooking}"
-                                                                                 pattern="^\d+$"/>
+                                        <div style="margin-bottom: 16px;">
+                                            <label for="price" th:text="#{text.price}"/>
+                                            <input class="form-control" type="number"
+                                                   name="price" id="price"
+                                                   th:value="${dish.price}"
+                                                   th:field="*{price}"
+                                                   minlength="1"
+                                                   step=".01"
+                                                   pattern="^\d+(.\d{1,2})?$"/>
                                         </div>
-                                        <select name="category" style="margin-bottom: 10px">
-                                            <option disabled th:text="#{text.category}"></option>
-                                            <option value="salad" th:text="#{text.salad}"></option>
-                                            <option value="pizza" th:text="#{text.pizza}"></option>
-                                            <option value="appetizer" th:text="#{text.appetizer}"></option>
-                                            <option value="drink" th:text="#{text.drink}"></option>
-                                        </select>
+                                        <div class="mb-3">
+                                            <label for="weight" th:text="#{text.weight}"/>
+                                            <input class="form-control" type="number"
+                                                   name="weight" id="weight"
+                                                   th:value="${dish.weight}"
+                                                   th:field="*{weight}"
+                                                   step=".01"
+                                                   pattern="^\d+$"/>
+                                        </div>
+                                        <div style="margin-bottom: 16px;">
+                                            <label for="cooking" th:text="#{text.cooking.time}"/>
+                                            <input class="form-control" type="number"
+                                                   name="cooking" id="cooking"
+                                                   th:value="${dish.cooking}"
+                                                   th:field="*{cooking}"
+                                                   pattern="^\d+$"/>
+                                        </div>
+                                        <label>
+                                            <select name="category" th:field="*{category}" style="margin-bottom: 10px">
+                                                <option th:value="SALAD" th:text="#{text.salad}"></option>
+                                                <option th:value="PIZZA" th:text="#{text.pizza}"></option>
+                                                <option th:value="APPETIZER" th:text="#{text.appetizer}"></option>
+                                                <option th:value="DRINK" th:text="#{text.drink}"></option>
+                                            </select>
+                                        </label>
                                         <div class="mb-3">
                                             <button class="btn btn-success d-block w-100" type="submit"
                                                     value="" th:text="#{text.update}"></button>

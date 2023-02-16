@@ -1,9 +1,11 @@
 package com.app.web.restaurant.service.impl;
 
 import com.app.web.restaurant.model.Contacts;
+import com.app.web.restaurant.repository.ContactsRepository;
 import com.app.web.restaurant.service.ContactsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,14 +14,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class ContactsServiceImpl implements ContactsService {
+    private final ContactsRepository contactsRepository;
     @Override
     public boolean isExists(Contacts contacts) {
-        return false;
+        return contactsRepository.exists(Example.of(contacts));
     }
 
     @Override
     public void saveContacts(Contacts contacts) {
-
+        contactsRepository.save(contacts);
     }
 
     @Override
@@ -29,16 +32,16 @@ public class ContactsServiceImpl implements ContactsService {
 
     @Override
     public Contacts findContactsById(Long id) {
-        return null;
+        return contactsRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
     @Override
     public List<Contacts> findAllContacts() {
-        return null;
+        return contactsRepository.findAll();
     }
 
     @Override
     public void deleteContactsById(Long id) {
-
+        contactsRepository.deleteById(id);
     }
 }

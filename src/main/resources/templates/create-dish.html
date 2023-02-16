@@ -45,8 +45,7 @@
                         <div class="col-md-6 col-xl-4">
                             <div class="card mb-5">
                                 <div class="card-body d-flex flex-column align-items-center">
-                                    <form class="text-center" action="controller" method="post">
-                                        <input hidden name="command" value="create_dish"/>
+                                    <form class="text-center" th:action="@{/admin/dishes/new}" method="post" th:object="${dish}">
                                         <div style="margin-bottom: 16px;"><input class="form-control" type="text"
                                                                                  th:placeholder="#{text.title}"
                                                                                  name="title"
@@ -72,16 +71,16 @@
                                                                  pattern="^\d+$"/>
                                         </div>
                                         <div style="margin-bottom: 16px;"><input class="form-control" type="number"
-                                                                                 name="timeToCreate"
+                                                                                 name="cooking"
                                                                                  th:placeholder="#{text.cooking.time}"
                                                                                  pattern="^\d+$"/>
                                         </div>
-                                        <select name="dishCategory" style="margin-bottom: 10px">
+                                        <select name="category" style="margin-bottom: 10px">
                                             <option disabled th:text="#{text.category}"></option>
-                                            <option value="salad" th:text="#{text.salad}"></option>
-                                            <option value="pizza" th:text="#{text.pizza}"></option>
-                                            <option value="appetizer" th:text="#{text.appetizer}"></option>
-                                            <option value="drink" th:text="#{text.drink}"></option>
+                                            <option th:value="SALAD" th:text="#{text.salad}"></option>
+                                            <option th:value="PIZZA" th:text="#{text.pizza}"></option>
+                                            <option th:value="APPETIZER" th:text="#{text.appetizer}"></option>
+                                            <option th:value="DRINK" th:text="#{text.drink}"></option>
                                         </select>
                                         <div class="mb-3">
                                             <button class="btn btn-success d-block w-100" type="submit"

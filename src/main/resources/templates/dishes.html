@@ -55,11 +55,11 @@
             <a class="nav-link active" aria-current="page" th:text="#{text.dishes}"></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="controller?command=users" th:text="#{text.users}"></a>
+            <a class="nav-link" th:href="@{/admin/users}" th:text="#{text.users}"></a>
         </li>
     </ul>
     <div class="container justify-content-center">
-        <a href="controller?command=dish_form" style="text-decoration:none;">
+        <a th:href="@{/admin/new-dish}" style="text-decoration:none;">
             <button type="button" class="btn btn-outline-success" th:text="#{text.new.dish}"></button>
         </a>
     </div>
@@ -75,6 +75,7 @@
             <th scope="col" th:text="#{text.cooking.time}"></th>
             <th scope="col" th:text="#{text.date.created}"></th>
             <th scope="col" th:text="#{text.category}"></th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -92,15 +93,11 @@
                 <span th:case="'APPETIZER'" th:text="#{text.appetizer}"></span>
                 <span th:case="'DRINK'" th:text="#{text.drink}"></span>
             </td>
-            <td>
-                <button type="button" class="btn btn-outline-warning"
-                        onclick="window.location='controller?command=edit_dish_form&dishId=${dish.id}'"
-                        th:text="#{text.edit}"></button>
-            </td>
-            <td>
-                <button type="button" class="btn btn-outline-danger"
-                        onclick="window.location='controller?command=remove_dish&dishId=${dish.id}'"
-                        th:text="#{text.remove}"></button>
+            <td style="text-align: right">
+                <a class="btn btn-outline-warning"
+                   th:href="@{/admin/dishes/edit-form/{id}(id=${dish.id})}" th:text="#{text.edit}"></a>
+                <a class="btn btn-outline-danger"
+                   th:href="@{/admin/dishes/delete/{id}(id=${dish.id})}" th:text="#{text.remove}"></a>
             </td>
         </tr>
         </tbody>

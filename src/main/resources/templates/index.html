@@ -21,7 +21,7 @@
             <div class="btn-group col-md-5 w-auto ms-auto" role="group" aria-label="Button group with nested dropdown"
                  th:if="${session.user == null}">
                 <div class="col-md-15 text-end">
-                    <a th:href="@{/login-page}" style="text-decoration:none;">
+                    <a th:href="@{/login-form}" style="text-decoration:none;">
                         <button type="button" class="btn btn-outline-secondary" th:text="#{text.login}">
                         </button>
                     </a>

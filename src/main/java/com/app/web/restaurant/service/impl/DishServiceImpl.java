@@ -5,8 +5,10 @@ import com.app.web.restaurant.repository.DishRepository;
 import com.app.web.restaurant.service.DishService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
@@ -14,13 +16,14 @@ import java.util.List;
 public class DishServiceImpl implements DishService {
     private final DishRepository dishRepository;
     @Override
-    public boolean isDishExists(Dish dish) {
+    public boolean isExists(Dish dish) {
         return dishRepository.existsById(dish.getId());
     }
 
     @Override
     public void saveDish(Dish dish) {
-        if (!dishRepository.existsById(dish.getId())) {
+        dish.setDateCreated(LocalDateTime.now());
+        if (!dishRepository.exists(Example.of(dish))) {
             dishRepository.save(dish);
         }
     }
@@ -32,7 +35,7 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public Dish findDishById(Long id) {
-        return null;
+        return dishRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
     @Override
@@ -41,9 +44,9 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public void deleteDish(Dish dish) {
-        if (dishRepository.existsById(dish.getId())) {
-            dishRepository.delete(dish);
+    public void deleteDish(Long id) {
+        if (dishRepository.existsById(id)) {
+            dishRepository.deleteById(id);
         }
     }
 }
