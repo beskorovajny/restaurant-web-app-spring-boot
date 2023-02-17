@@ -6,10 +6,14 @@ import java.util.List;
 
 public interface ReceiptService {
     boolean isExists(Receipt receipt);
+
     void saveReceipt(Receipt receipt);
+
     Receipt updateReceipt(Receipt receipt);
+
     Receipt findReceiptById(Long id);
+
     List<Receipt> findAllReceipts();
-    List<Receipt> findAllByCustomerId(Long id);
+
     void deleteReceipt(Long id);
 }

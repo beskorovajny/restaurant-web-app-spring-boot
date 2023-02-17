@@ -10,11 +10,13 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
 @Slf4j
 @RequiredArgsConstructor
 @Service
 public class DishServiceImpl implements DishService {
     private final DishRepository dishRepository;
+
     @Override
     public boolean isExists(Dish dish) {
         return dishRepository.existsById(dish.getId());

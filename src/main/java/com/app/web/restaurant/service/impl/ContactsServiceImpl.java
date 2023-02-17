@@ -15,6 +15,7 @@ import java.util.List;
 @Service
 public class ContactsServiceImpl implements ContactsService {
     private final ContactsRepository contactsRepository;
+
     @Override
     public boolean isExists(Contacts contacts) {
         return contactsRepository.exists(Example.of(contacts));

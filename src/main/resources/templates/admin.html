@@ -55,7 +55,7 @@
             <a class="nav-link" th:href="@{/admin/dishes}" th:text="#{text.dishes}"></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{admin/users}" th:text="#{text.users}"></a>
+            <a class="nav-link" th:href="@{/admin/users}" th:text="#{text.users}"></a>
         </li>
     </ul>
     <hr class="bg-secondary border-2 border-top border-secondary">
@@ -84,7 +84,7 @@
             </td>
             <td th:text="${receipt.contacts.id}"/>
             <td th:text="${receipt.customer.id}"/>
-            <td>
+            <td style="text-align: right">
                 <button type="button" class="btn btn-outline-secondary"
                         onclick="window.location='controller?command=receipt_details&receiptId=${receipt.id}'"
                         th:text="#{text.details}">

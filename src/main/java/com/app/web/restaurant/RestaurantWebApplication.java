@@ -13,9 +13,9 @@ import java.net.URISyntaxException;
 
 @Slf4j
 @SpringBootApplication
-public class RestaurantWebAppApplication {
+public class RestaurantWebApplication {
     public static void main(String[] args) {
-        SpringApplication.run(RestaurantWebAppApplication.class, args);
+        SpringApplication.run(RestaurantWebApplication.class, args);
     }
 
     @EventListener({ApplicationReadyEvent.class})

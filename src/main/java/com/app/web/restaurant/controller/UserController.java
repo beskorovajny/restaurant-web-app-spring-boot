@@ -42,10 +42,10 @@ public class UserController {
 
     @GetMapping("/admin/users/{id}")
     public String showUserById(@PathVariable("id") Long id, Model model) {
-        List<User> users = List.of(userService.findById(id));
-        log.info("User by ID: [" + users + "]");
-        model.addAttribute("users", users);
-        return "users";
+        User user = userService.findById(id);
+        log.info("User by ID: [" + user + "]");
+        model.addAttribute("user", user);
+        return "user";
     }
 
     @GetMapping("/admin/users")
