@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css">
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/custom.js}"></script>
+
+    <title th:text="#{text.user.details}"></title>
+</head>
+
+<body>
+<nav class="navbar navbar-light navbar-expand-md py-3">
+    <div class="container"><a class="navbar-brand d-flex align-items-center" th:href="@{/home}">
+        <span th:text="#{text.brand}"></span></a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav-col-2"><span
+                class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div id="nav-col-2" class="collapse navbar-collapse">
+            <div class="btn-group col-md-5 w-auto ms-auto" role="group" aria-label="Button group with nested dropdown">
+                <div class="col-md-15 text-center" style="margin: 10px">
+                    <h6 th:text="#{text.greetings}">
+                        ${sessionScope.user.firstName} ${sessionScope.user.lastName}
+                    </h6>
+                </div>
+                <div class="col-md-15 text-end" style="margin-right: 10px;">
+                    <a th:href="@{/user/menu}" style="text-decoration:none;">
+                        <button type="button" class="btn btn-outline-success" th:text="#{text.menu}"></button>
+                    </a>
+                </div>
+                <div class="col-md-15 text-end">
+                    <a href="controller?command=logout" style="text-decoration:none;">
+                        <button type="button" class="btn btn-outline-warning" th:text="#{text.logout}"></button>
+                    </a>
+                </div>
+                <div class="btn-group btn-group-sm" role="group" style="margin-left: 5px">
+                    <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false" th:utext="#{logo.globe}">
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <li><a class="dropdown-item"
+                               th:href="@{''(lang=ua)}">UA</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                               th:href="@{''(lang=en)}">ENG</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<hr class="bg-secondary border-2 border-top border-secondary">
+<div class="container py-1 py-xl-2 mx-auto text-center">
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 th:text="#{text.customer.info}"></h5>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="text-muted mb-0">ID#</p>
+                </div>
+                <div class="col-sm-9">
+                    <p class="mb-0"
+                       th:text="${user.id}"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="text-muted mb-0" th:text="#{text.full.name}"></p>
+                </div>
+                <div class="col-sm-9">
+                    <p class="mb-0"
+                       th:text="${user.firstName} + ' ' + ${user.lastName}"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="text-muted mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                    <p class="mb-0" th:text="${user.email}"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="text-muted mb-0" th:text="#{text.role}"></p>
+                </div>
+                <div class="col-sm-9">
+                    <p class="mb-0"
+                       th:text="${user.role}"></p>
+                </div>
+            </div>
+            <hr/>
+            <h5 th:text="#{text.receipts}"></h5>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col" th:text="#{text.date.created}"></th>
+                    <th scope="col" th:text="#{text.total.price}"></th>
+                    <th scope="col" th:text="#{text.status}"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="receipt: ${user.receipts}">
+                    <td th:text="${receipt.id}"/>
+                    <td th:text="${#temporals.format(receipt.dateCreated, 'yyyy-MM-dd HH:mm')}"/>
+                    <td th:text="${receipt.totalPrice}"/>
+                    <td th:switch="${receipt.status.name()}">
+                        <span th:case="'NEW'" th:text="#{text.new}"></span>
+                        <span th:case="'COOKING'" th:text="#{text.cooking}"></span>
+                        <span th:case="'DELIVERY'" th:text="#{text.delivery}"></span>
+                        <span th:case="'COMPLETED'" th:text="#{text.completed}"></span>
+                    </td>
+                    <td style="text-align: right">
+                        <button type="button" class="btn btn-outline-primary"
+                                onclick="window.location='controller?command=receipt_details&receiptId=${receipt.id}'"
+                                th:text="#{text.details}"></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <c:if test="${param.page-1 >= 1}">
+                        <li class="page-item"><a class="page-link"
+                                                 href="controller?command=${param.command}&page=${param.page-1}"
+                                                 th:text="#{text.previous}"></a>
+                        </li>
+                    </c:if>
+
+                    <c:forEach var="page" items="${requestScope.pages}">
+
+                        <li class="page-item"><a class="page-link"
+                                                 href="controller?command=${param.command}&page=${page}">${page}</a>
+                        </li>
+
+                    </c:forEach>
+                    <c:set var="size" scope="page" value="${requestScope.pages}"/>
+
+                    <c:if test="${param.page+1 <= size.size()}">
+                        <li class="page-item"><a class="page-link"
+                                                 href="controller?command=${param.command}&page=${param.page+1}"
+                                                 th:text="#{text.next}"></a>
+                        </li>
+                    </c:if>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+</body>
+</html>

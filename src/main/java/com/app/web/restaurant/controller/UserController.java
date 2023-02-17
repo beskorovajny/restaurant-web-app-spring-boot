@@ -2,7 +2,6 @@ package com.app.web.restaurant.controller;
 
 import com.app.web.restaurant.entity.User;
 import com.app.web.restaurant.entity.enums.Role;
-import com.app.web.restaurant.repository.UserRepository;
 import com.app.web.restaurant.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +17,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 public class UserController {
-    private final UserRepository userRepository;
     private final UserService userService;
 
     @PostMapping("/users/new")
