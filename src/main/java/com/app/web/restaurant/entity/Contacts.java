@@ -1,6 +1,5 @@
-package com.app.web.restaurant.model;
+package com.app.web.restaurant.entity;
 
-import com.app.web.restaurant.model.enums.Role;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -8,26 +7,23 @@ import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
-
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Getter
 @Setter
 @ToString
 @Entity
-public class User {
+public class Contacts {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(unique = true)
-    private String email;
-    private String firstName;
-    private String lastName;
-    private char[] password;
-    @Enumerated(EnumType.STRING)
-    private Role role;
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private String country;
+    private String city;
+    private String street;
+    private String buildingNumber;
+    private String phone;
+    @OneToMany(mappedBy = "contacts", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
     private Set<Receipt> receipts;
 
@@ -35,8 +31,8 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        User user = (User) o;
-        return id != null && Objects.equals(id, user.id);
+        Contacts contacts = (Contacts) o;
+        return id != null && Objects.equals(id, contacts.id);
     }
 
     @Override

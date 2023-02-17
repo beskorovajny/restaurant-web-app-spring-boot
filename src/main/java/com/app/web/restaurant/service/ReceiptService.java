@@ -1,6 +1,6 @@
 package com.app.web.restaurant.service;
 
-import com.app.web.restaurant.model.Receipt;
+import com.app.web.restaurant.entity.Receipt;
 
 import java.util.List;
 
@@ -10,5 +10,6 @@ public interface ReceiptService {
     Receipt updateReceipt(Receipt receipt);
     Receipt findReceiptById(Long id);
     List<Receipt> findAllReceipts();
-    void deleteReceipt(Receipt receipt);
+    List<Receipt> findAllByCustomerId(Long id);
+    void deleteReceipt(Long id);
 }

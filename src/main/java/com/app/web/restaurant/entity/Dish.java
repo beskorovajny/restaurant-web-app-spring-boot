@@ -1,6 +1,6 @@
-package com.app.web.restaurant.model;
+package com.app.web.restaurant.entity;
 
-import com.app.web.restaurant.model.enums.Status;
+import com.app.web.restaurant.entity.enums.Category;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -17,28 +17,28 @@ import java.util.Set;
 @Setter
 @ToString
 @Entity
-public class Receipt {
+public class Dish {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String title;
+    private String description;
+    private Double price;
+    private Integer weight;
+    private Integer cooking;
     private LocalDateTime dateCreated;
-    private Double totalPrice;
-    @ManyToOne
-    private Contacts contacts;
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Category category;
     @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private User customer;
     @Transient
-    private Set<Dish> dishes;
+    private Set<Receipt> receipts;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Receipt receipt = (Receipt) o;
-        return id != null && Objects.equals(id, receipt.id);
+        Dish dish = (Dish) o;
+        return id != null && Objects.equals(id, dish.id);
     }
 
     @Override

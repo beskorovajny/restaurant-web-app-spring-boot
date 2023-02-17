@@ -1,6 +1,6 @@
 package com.app.web.restaurant.service;
 
-import com.app.web.restaurant.model.Contacts;
+import com.app.web.restaurant.entity.Contacts;
 
 import java.util.List;
 

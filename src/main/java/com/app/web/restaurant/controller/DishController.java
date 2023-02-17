@@ -1,12 +1,11 @@
 package com.app.web.restaurant.controller;
 
-import com.app.web.restaurant.model.Dish;
+import com.app.web.restaurant.entity.Dish;
 import com.app.web.restaurant.service.DishService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +19,7 @@ public class DishController {
     private final DishService dishService;
 
     @PostMapping({"/admin/dishes/new", "/admin/dishes/update"})
-    public String saveDish(Dish dish, BindingResult result, Model model) {
+    public String saveDish(Dish dish) {
         dishService.saveDish(dish);
         return "redirect:/admin/dishes";
     }
@@ -59,6 +58,6 @@ public class DishController {
         List<Dish> dishes = dishService.findAllDishes();
         log.info("Dishes found: [" + dishes + "]");
         model.addAttribute("dishes", dishes);
-        log.info("Dishes from model: [" + model.getAttribute("dishes") + "]");
+        log.info("Dishes from entity: [" + model.getAttribute("dishes") + "]");
     }
 }

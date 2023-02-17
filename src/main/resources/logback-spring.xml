@@ -99,7 +99,7 @@
     </root>
 
     <!-- LOG "com.restaurant*" at TRACE level -->
-    <logger name="com.app.web.restaurant.controller" level="trace" additivity="false">
+    <logger name="com.app.web.restaurant" level="trace" additivity="false">
         <appender-ref ref="ERROR-FILE" />
         <appender-ref ref="Console" />
     </logger>

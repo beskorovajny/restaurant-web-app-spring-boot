@@ -27,5 +27,15 @@ t
 Dsrc/main/java/com/app/web/restaurant/configuration/LocaleConfig.java,0\8\082359c8eb347e8a393e9f3e382409d799353ef8
 g
 7src/main/java/com/app/web/restaurant/model/Receipt.java,6\e\6ebf539c4b9551aba4f6c804e44f91a681a40fd4
-v
-Fsrc/main/java/com/app/web/restaurant/repository/ReceiptRepository.java,f\b\fb41e756316a1679532347034c94d85670cc4b76
+q
+Asrc/main/java/com/app/web/restaurant/service/ContactsService.java,8\5\85f0f7477572158f82a7676d6b2a08559d13fcef
+z
+Jsrc/main/java/com/app/web/restaurant/service/impl/ContactsServiceImpl.java,d\9\d963017b626fc84fb1b7b54371788c87bca728b9
+w
+Gsrc/main/java/com/app/web/restaurant/repository/ContactsRepository.java,c\0\c00e54c1352eb53afdbfa5fd6d50da0a670250b1
+m
+=src/main/java/com/app/web/restaurant/service/UserService.java,2\6\26422f4fb12c1044740993542f0f3ff2864fddd2
+d
+4src/main/java/com/app/web/restaurant/model/Dish.java,2\3\2369d83971741c1709a939fc9f304c7b57ae589a
+y
+Isrc/main/java/com/app/web/restaurant/controller/NavigationController.java,2\c\2c3c9979cf577621e987297ae29c1f46da830099

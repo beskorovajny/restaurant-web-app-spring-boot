@@ -1,6 +1,6 @@
 package com.app.web.restaurant.repository;
 
-import com.app.web.restaurant.model.User;
+import com.app.web.restaurant.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 

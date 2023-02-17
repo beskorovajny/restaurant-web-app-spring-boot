@@ -1,6 +1,6 @@
 package com.app.web.restaurant.service.impl;
 
-import com.app.web.restaurant.model.Contacts;
+import com.app.web.restaurant.entity.Contacts;
 import com.app.web.restaurant.repository.ContactsRepository;
 import com.app.web.restaurant.service.ContactsService;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.app.web.restaurant.service.impl;
 
-import com.app.web.restaurant.model.Dish;
+import com.app.web.restaurant.entity.Dish;
 import com.app.web.restaurant.repository.DishRepository;
 import com.app.web.restaurant.service.DishService;
 import lombok.RequiredArgsConstructor;

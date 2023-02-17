@@ -1,6 +1,7 @@
 package com.app.web.restaurant.service.impl;
 
-import com.app.web.restaurant.model.User;
+import com.app.web.restaurant.entity.User;
+import com.app.web.restaurant.exception.user.UserNotFoundException;
 import com.app.web.restaurant.repository.UserRepository;
 import com.app.web.restaurant.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
+    private static final String USER_NOT_FOUND_MSG = "User[ID: %d] not found";
     private final UserRepository userRepository;
+
     @Override
     public boolean isExistsByEmail(String eMail) {
         Optional<User> user = userRepository.findByEmail(eMail);
@@ -32,13 +35,16 @@ public class UserServiceImpl implements UserService {
         if (old.isPresent()) {
             return userRepository.save(user);
         } else {
-            throw new IllegalArgumentException();
+            throw new UserNotFoundException(String.format(USER_NOT_FOUND_MSG, user.getId()));
         }
     }
 
     @Override
     public User findById(Long id) {
-        return userRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        return userRepository.findById(id).orElseThrow(() -> {
+            log.debug(String.format(USER_NOT_FOUND_MSG, id));
+            throw new UserNotFoundException(String.format(USER_NOT_FOUND_MSG, id));
+        });
     }
 
     @Override

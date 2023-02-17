@@ -79,7 +79,8 @@
                             <p class="mb-0" th:text="#{text.full.name}"></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0">${requestScope.user.firstName} ${requestScope.user.lastName}</p>
+                            <p class="text-muted mb-0"
+                               th:text="${receipt.customer.firstName} + ' ' + ${receipt.customer.lastName}"></p>
                         </div>
                     </div>
                     <hr>
@@ -88,7 +89,7 @@
                             <p class="mb-0">Email</p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0">${requestScope.user.email}</p>
+                            <p class="text-muted mb-0" th:text="${receipt.customer.email}"></p>
                         </div>
                     </div>
                     <hr>
@@ -98,7 +99,7 @@
                             <p class="mb-0" th:text="#{text.country}"></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0">${requestScope.contacts.country}</p>
+                            <p class="text-muted mb-0" th:text="${receipt.contacts.country}"></p>
                         </div>
                     </div>
                     <div class="row">
@@ -106,7 +107,7 @@
                             <p class="mb-0" th:text="#{text.city}"></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0">${requestScope.contacts.city}</p>
+                            <p class="text-muted mb-0" th:text="${receipt.contacts.city}"></p>
                         </div>
                     </div>
                     <div class="row">
@@ -114,7 +115,7 @@
                             <p class="mb-0" th:text="#{text.street}"></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0">${requestScope.contacts.street}</p>
+                            <p class="text-muted mb-0" th:text="${receipt.contacts.street}"></p>
                         </div>
                     </div>
                     <div class="row">
@@ -122,7 +123,7 @@
                             <p class="mb-0" th:text="#{text.building}"></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0">${requestScope.contacts.buildingNumber}</p>
+                            <p class="text-muted mb-0" th:text="${receipt.contacts.buildingNumber}"></p>
                         </div>
                     </div>
                     <div class="row">
@@ -130,7 +131,7 @@
                             <p class="mb-0" th:text="#{text.phone}"></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0">${requestScope.contacts.phone}</p>
+                            <p class="text-muted mb-0" th:text="${receipt.contacts.phone}"></p>
                         </div>
                     </div>
                     <hr>

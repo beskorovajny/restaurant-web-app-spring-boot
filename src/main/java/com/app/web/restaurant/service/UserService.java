@@ -1,6 +1,6 @@
 package com.app.web.restaurant.service;
 
-import com.app.web.restaurant.model.User;
+import com.app.web.restaurant.entity.User;
 
 import java.util.List;
 

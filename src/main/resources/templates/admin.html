@@ -13,6 +13,7 @@
 <body>
 <nav class="navbar navbar-light navbar-expand-md py-3" aria-label="header">
     <div class="container"><a class="navbar-brand d-flex align-items-center" th:href="@{/home}">
+        <span th:text="#{text.brand}"></span></a>
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav-col-2"><span
                 class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div id="nav-col-2" class="collapse navbar-collapse">
@@ -51,10 +52,10 @@
             <a class="nav-link active" aria-current="page" th:text="#{text.receipts}"></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="controller?command=dishes" th:text="#{text.dishes}"></a>
+            <a class="nav-link" th:href="@{/admin/dishes}" th:text="#{text.dishes}"></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="controller?command=users" th:text="#{text.users}"></a>
+            <a class="nav-link" th:href="@{admin/users}" th:text="#{text.users}"></a>
         </li>
     </ul>
     <hr class="bg-secondary border-2 border-top border-secondary">
@@ -73,7 +74,7 @@
         <tbody>
         <tr th:each="receipt: ${receipts}">
             <td th:text="${receipt.id}"/>
-            <td th:text="${#dates.format(receipt.dateCreated, 'yyyy-MM-dd HH:mm')}"/>
+            <td th:text="${#temporals.format(receipt.dateCreated, 'yyyy-MM-dd HH:mm')}"/>
             <td th:text="${receipt.totalPrice}"/>
             <td th:switch="${receipt.status.name()}">
                 <span th:case="'NEW'" th:text="#{text.new}"></span>
@@ -81,8 +82,8 @@
                 <span th:case="'DELIVERY'" th:text="#{text.delivery}"></span>
                 <span th:case="'COMPLETED'" th:text="#{text.completed}"></span>
             </td>
-            <td th:text="${receipt.contactsId}"/>
-            <td th:text="${receipt.customerId}"/>
+            <td th:text="${receipt.contacts.id}"/>
+            <td th:text="${receipt.customer.id}"/>
             <td>
                 <button type="button" class="btn btn-outline-secondary"
                         onclick="window.location='controller?command=receipt_details&receiptId=${receipt.id}'"

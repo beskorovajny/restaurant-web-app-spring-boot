@@ -1,6 +1,6 @@
 package com.app.web.restaurant.repository;
 
-import com.app.web.restaurant.model.Dish;
+import com.app.web.restaurant.entity.Dish;
 import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -16,5 +16,6 @@ public interface DishRepository extends JpaRepository<Dish, Long>, PagingAndSort
 
     @Override
     Optional<Dish> findById(Long id);
+    
 
 }

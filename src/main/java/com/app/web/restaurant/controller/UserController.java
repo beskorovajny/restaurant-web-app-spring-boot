@@ -1,7 +1,7 @@
 package com.app.web.restaurant.controller;
 
-import com.app.web.restaurant.model.User;
-import com.app.web.restaurant.model.enums.Role;
+import com.app.web.restaurant.entity.User;
+import com.app.web.restaurant.entity.enums.Role;
 import com.app.web.restaurant.repository.UserRepository;
 import com.app.web.restaurant.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class UserController {
     private final UserRepository userRepository;
     private final UserService userService;
 
-    @PostMapping("/users/save")
+    @PostMapping("/users/new")
     public String saveUser(User user) {
         user.setRole(Role.USER);
         userService.saveUser(user);
@@ -41,7 +41,7 @@ public class UserController {
     }
 
     @GetMapping("/admin/users/{id}")
-    public String findUserById(@PathVariable("id") Long id, Model model) {
+    public String showUserById(@PathVariable("id") Long id, Model model) {
         List<User> users = List.of(userService.findById(id));
         log.info("User by ID: [" + users + "]");
         model.addAttribute("users", users);
@@ -49,11 +49,11 @@ public class UserController {
     }
 
     @GetMapping("/admin/users")
-    public String findAllUsers(Model model) {
+    public String showAllUsers(Model model) {
         List<User> users = userService.findAllUsers();
         log.info("Users found: [" + users + "]");
         model.addAttribute("users", users);
-        log.info("Users from model: [" + model.getAttribute("users") + "]");
+        log.info("Users from entity: [" + model.getAttribute("users") + "]");
         return "users";
     }
 

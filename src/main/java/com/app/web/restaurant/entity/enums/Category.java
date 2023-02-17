@@ -1,4 +1,4 @@
-package com.app.web.restaurant.model.enums;
+package com.app.web.restaurant.entity.enums;
 
 public enum Category {
     SALAD,
