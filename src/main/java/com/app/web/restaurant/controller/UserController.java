@@ -22,7 +22,7 @@ public class UserController {
     @PostMapping("/users/new")
     public String saveUser(User user) {
         user.setRole(Role.USER);
-        userService.saveUser(user);
+        userService.save(user);
         return "redirect:/admin/users";
     }
 
@@ -34,7 +34,7 @@ public class UserController {
         } else {
             user.setRole(Role.USER);
         }
-        userService.saveUser(user);
+        userService.save(user);
         return ("redirect:/admin/users");
     }
 
@@ -48,7 +48,7 @@ public class UserController {
 
     @GetMapping("/admin/users")
     public String showAllUsers(Model model) {
-        List<User> users = userService.findAllUsers();
+        List<User> users = userService.findAll();
         log.info("Users found: [" + users + "]");
         model.addAttribute("users", users);
         log.info("Users from entity: [" + model.getAttribute("users") + "]");

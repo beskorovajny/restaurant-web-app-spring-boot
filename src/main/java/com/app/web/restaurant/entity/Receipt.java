@@ -6,8 +6,8 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 
 
 @AllArgsConstructor
@@ -25,13 +25,13 @@ public class Receipt {
     private Double totalPrice;
     @ManyToOne
     private Contacts contacts;
-    @Enumerated(EnumType.STRING)
-    private Status status;
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private User customer;
+    @Enumerated(EnumType.STRING)
+    private Status status;
     @Transient
-    private Set<Dish> dishes;
+    private Map<Dish, Integer> dishes;
 
     @Override
     public boolean equals(Object o) {

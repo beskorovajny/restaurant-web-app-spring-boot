@@ -23,7 +23,7 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public void saveDish(Dish dish) {
+    public void save(Dish dish) {
         dish.setDateCreated(LocalDateTime.now());
         if (!dishRepository.exists(Example.of(dish))) {
             dishRepository.save(dish);
@@ -31,22 +31,22 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public Dish updateDish(Dish dish) {
+    public Dish update(Dish dish) {
         return null;
     }
 
     @Override
-    public Dish findDishById(Long id) {
+    public Dish findById(Long id) {
         return dishRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
     @Override
-    public List<Dish> findAllDishes() {
+    public List<Dish> findAll() {
         return dishRepository.findAll();
     }
 
     @Override
-    public void deleteDish(Long id) {
+    public void deleteById(Long id) {
         if (dishRepository.existsById(id)) {
             dishRepository.deleteById(id);
         }

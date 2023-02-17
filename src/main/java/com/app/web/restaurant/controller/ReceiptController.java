@@ -18,18 +18,24 @@ public class ReceiptController {
     private final ReceiptService receiptService;
     @GetMapping("/admin/receipts")
     public String showAllReceipts(Model model) {
-        List<Receipt> receipts = receiptService.findAllReceipts();
+        List<Receipt> receipts = receiptService.findAll();
         log.info("Receipts found: [" + receipts + "]");
         model.addAttribute("receipts", receipts);
         return "admin";
     }
 
-    @GetMapping("/admin/receipts/{}")
+    @GetMapping("/receipts/{id}")
     public String showReceiptDetails(@PathVariable("id") Long id, Model model) {
-        Receipt receipt = receiptService.findReceiptById(id);
+        Receipt receipt = receiptService.findById(id);
         log.info("Receipt by ID: " + receipt);
         model.addAttribute("receipt", receipt);
         return "receipt-details";
+    }
+
+    @GetMapping("/admin/receipts/delete/{id}")
+    public String deleteReceipt(@PathVariable("id") Long id){
+        receiptService.deleteById(id);
+        return "redirect:/admin/receipts";
     }
 
 }

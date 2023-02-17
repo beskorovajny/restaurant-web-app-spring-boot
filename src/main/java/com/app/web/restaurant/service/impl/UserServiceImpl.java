@@ -31,12 +31,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUser(User user) {
+    public void save(User user) {
         userRepository.save(user);
     }
 
     @Override
-    public User updateUser(User user) {
+    public User update(User user) {
         Optional<User> old = userRepository.findByEmail(user.getEmail());
         if (old.isPresent()) {
             return userRepository.save(user);
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAllUsers() {
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 

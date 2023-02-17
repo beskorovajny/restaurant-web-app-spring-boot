@@ -94,23 +94,22 @@
 
     <!-- LOG everything at INFO level -->
     <root level="info">
-        <appender-ref ref="INFO-FILE" />
         <appender-ref ref="Console" />
     </root>
 
     <!-- LOG "com.restaurant*" at TRACE level -->
-    <logger name="com.app.web.restaurant" level="trace" additivity="false">
+    <logger name="com.app.web.restaurant.trace" level="trace" additivity="false">
         <appender-ref ref="ERROR-FILE" />
         <appender-ref ref="Console" />
     </logger>
 
 
-    <logger name="com.app.web.restaurant.service" level="debug" additivity="false">
+    <logger name="com.app.web.restaurant.debug" level="debug" additivity="false">
         <appender-ref ref="DEBUG-FILE" />
         <appender-ref ref="Console" />
     </logger>
 
-    <logger name="com.app.web.restaurant.repository" level="error" additivity="false">
+    <logger name="com.app.web.restaurant.error" level="error" additivity="false">
         <appender-ref ref="ERROR-FILE" />
         <appender-ref ref="Console" />
     </logger>

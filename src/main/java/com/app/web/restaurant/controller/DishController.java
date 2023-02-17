@@ -20,12 +20,12 @@ public class DishController {
 
     @PostMapping({"/admin/dishes/new", "/admin/dishes/update"})
     public String saveDish(Dish dish) {
-        dishService.saveDish(dish);
+        dishService.save(dish);
         return "redirect:/admin/dishes";
     }
     @GetMapping("/admin/dishes/edit-form/{id}")
     public String editDishForm(@PathVariable("id") Long id, Model model){
-        Dish dish = dishService.findDishById(id);
+        Dish dish = dishService.findById(id);
         model.addAttribute("dish", dish);
         log.info("Dish for update:[" + dish + "]");
         return "edit-dish";
@@ -50,12 +50,12 @@ public class DishController {
 
     @GetMapping("admin/dishes/delete/{id}")
     public String deleteDish(@PathVariable("id") Long id) {
-        dishService.deleteDish(id);
+        dishService.deleteById(id);
         return "redirect:/admin/dishes";
     }
 
     private void getDishes(Model model) {
-        List<Dish> dishes = dishService.findAllDishes();
+        List<Dish> dishes = dishService.findAll();
         log.info("Dishes found: [" + dishes + "]");
         model.addAttribute("dishes", dishes);
         log.info("Dishes from entity: [" + model.getAttribute("dishes") + "]");

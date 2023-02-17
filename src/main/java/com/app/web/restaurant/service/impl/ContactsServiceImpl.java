@@ -22,27 +22,27 @@ public class ContactsServiceImpl implements ContactsService {
     }
 
     @Override
-    public void saveContacts(Contacts contacts) {
+    public void save(Contacts contacts) {
         contactsRepository.save(contacts);
     }
 
     @Override
-    public Contacts updateContacts(Contacts contacts) {
+    public Contacts update(Contacts contacts) {
         return null;
     }
 
     @Override
-    public Contacts findContactsById(Long id) {
+    public Contacts findById(Long id) {
         return contactsRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
     @Override
-    public List<Contacts> findAllContacts() {
+    public List<Contacts> findAll() {
         return contactsRepository.findAll();
     }
 
     @Override
-    public void deleteContactsById(Long id) {
+    public void deleteById(Long id) {
         contactsRepository.deleteById(id);
     }
 }

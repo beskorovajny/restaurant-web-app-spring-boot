@@ -7,13 +7,13 @@ import java.util.List;
 public interface ContactsService {
     boolean isExists(Contacts contacts);
 
-    void saveContacts(Contacts contacts);
+    void save(Contacts contacts);
 
-    Contacts updateContacts(Contacts contacts);
+    Contacts update(Contacts contacts);
 
-    Contacts findContactsById(Long id);
+    Contacts findById(Long id);
 
-    List<Contacts> findAllContacts();
+    List<Contacts> findAll();
 
-    void deleteContactsById(Long id);
+    void deleteById(Long id);
 }

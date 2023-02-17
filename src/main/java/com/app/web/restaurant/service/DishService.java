@@ -7,13 +7,13 @@ import java.util.List;
 public interface DishService {
     boolean isExists(Dish dish);
 
-    void saveDish(Dish dish);
+    void save(Dish dish);
 
-    Dish updateDish(Dish dish);
+    Dish update(Dish dish);
 
-    Dish findDishById(Long id);
+    Dish findById(Long id);
 
-    List<Dish> findAllDishes();
+    List<Dish> findAll();
 
-    void deleteDish(Long id);
+    void deleteById(Long id);
 }

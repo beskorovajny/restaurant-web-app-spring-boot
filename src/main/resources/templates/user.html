@@ -26,7 +26,7 @@
                     </h6>
                 </div>
                 <div class="col-md-15 text-end" style="margin-right: 10px;">
-                    <a th:href="@{/user/menu}" style="text-decoration:none;">
+                    <a th:href="@{/customer/menu}" style="text-decoration:none;">
                         <button type="button" class="btn btn-outline-success" th:text="#{text.menu}"></button>
                     </a>
                 </div>
@@ -118,9 +118,8 @@
                         <span th:case="'COMPLETED'" th:text="#{text.completed}"></span>
                     </td>
                     <td style="text-align: right">
-                        <button type="button" class="btn btn-outline-primary"
-                                onclick="window.location='controller?command=receipt_details&receiptId=${receipt.id}'"
-                                th:text="#{text.details}"></button>
+                        <a class="btn btn-outline-primary"
+                           th:href="@{/receipts/{id}(id=${receipt.id})}" th:text="#{text.details}"></a>
                     </td>
                 </tr>
                 </tbody>

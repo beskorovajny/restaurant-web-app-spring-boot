@@ -85,18 +85,10 @@
             <td th:text="${receipt.contacts.id}"/>
             <td th:text="${receipt.customer.id}"/>
             <td style="text-align: right">
-                <button type="button" class="btn btn-outline-secondary"
-                        onclick="window.location='controller?command=receipt_details&receiptId=${receipt.id}'"
-                        th:text="#{text.details}">
-                </button>
-                <button type="button" class="btn btn-outline-warning"
-                        onclick="window.location='controller?command=update_receipt_status&receiptId=${receipt.id}&page=${param.page}'"
-                        th:text="#{text.edit}">
-                </button>
-                <button type="button" class="btn btn-outline-danger"
-                        onclick="window.location='controller?command=remove_receipt&receiptId=${receipt.id}'"
-                        th:text="#{text.remove}">
-                </button>
+                <a class="btn btn-outline-primary"
+                   th:href="@{/receipts/{id}(id=${receipt.id})}" th:text="#{text.details}"></a>
+                <a class="btn btn-outline-danger"
+                   th:href="@{/admin/receipts/delete/{id}(id=${receipt.id})}" th:text="#{text.remove}"></a>
             </td>
         </tr>
         </tbody>
