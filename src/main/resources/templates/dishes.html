@@ -46,7 +46,7 @@
 </nav>
 
 <hr class="bg-secondary border-2 border-top border-secondary">
-<div class="container py-4 py-xl-5">
+<div class="container py-1 py-xl-2 mx-auto text-center">
     <ul class="nav nav-pills nav-justified">
         <li class="nav-item">
             <a class="nav-link" th:href="@{/admin/receipts}" th:text="#{text.receipts}"></a>
@@ -57,12 +57,11 @@
         <li class="nav-item">
             <a class="nav-link" th:href="@{/admin/users}" th:text="#{text.users}"></a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/new-dish}" th:text="#{text.new.dish}"></a>
+        </li>
     </ul>
-    <div class="container justify-content-center">
-        <a th:href="@{/admin/new-dish}" style="text-decoration:none;">
-            <button type="button" class="btn btn-outline-success" th:text="#{text.new.dish}"></button>
-        </a>
-    </div>
+
     <hr class="bg-secondary border-2 border-top border-secondary">
     <table class="table">
         <thead>
